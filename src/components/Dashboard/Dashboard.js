@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react'
 import { useNavigate } from "react-router-dom"
+import SimpleSideNav from './SimpleSideNav';
 
 function Dashboard() {
     let history = useNavigate();
@@ -13,15 +14,9 @@ function Dashboard() {
         }
     }, [])
 
-    const handleLogout = ()=>{
-        localStorage.removeItem('token')
-        history("/")
-      }
-
     return (
         <div>
-            <h1>Dashboard</h1>
-            <button onClick={handleLogout}>Logout</button>
+            <SimpleSideNav/>
         </div>
         
     )
