@@ -28,7 +28,7 @@ function SideLogin(props) {
       history("/dashboard")
     }
     else {
-      alert("Invalid credentials")
+      alert(json.error)
     }
   }
 

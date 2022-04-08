@@ -28,7 +28,7 @@ function SideSignup() {
             history("/dashboard")
         }
         else{
-            alert("Invalid credentials","danger")
+            alert(json.error)
         }
     }
   
