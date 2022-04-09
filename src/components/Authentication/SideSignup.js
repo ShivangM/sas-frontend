@@ -20,7 +20,6 @@ function SideSignup() {
             body: JSON.stringify({email: email, password: password}) 
           });
         const json = await response.json()
-        console.log(json)
   
         if(json.success){
             localStorage.setItem('token', json.authToken)

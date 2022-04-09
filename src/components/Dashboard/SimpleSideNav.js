@@ -8,6 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 import Avatar from 'react-avatar';
 import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux";
 
 function SimpleSideNav() {
 
@@ -19,15 +20,6 @@ function SimpleSideNav() {
   
   const [activeElement, setActiveElement] = useState(0);
 
-  // useEffect(() => {
-  //   const handleActive = ()=>{
-  //     var activeItem = document.getElementById(activeElement)
-  //     activeItem.setAttribute("class", active);
-  //   }
-
-  //   handleActive()
-  // }, [activeElement]);
-
   let navClass =
     "w-72 max-w-full bg-blue-800 h-screen flex flex-col text-white fixed lg:absolute lg:sticky top-0 transition-transform transform duration-500 ease"
   if (mobileOpen) navClass += " translate-x-0"
@@ -37,6 +29,9 @@ function SimpleSideNav() {
     localStorage.removeItem('token')
     history("/")
   }
+
+  const userInfo = useSelector(state=> state.userData.userData)
+  console.log(userInfo)
 
   return (
     <div className={navClass}>
@@ -84,9 +79,9 @@ function SimpleSideNav() {
       </div>
 
       <div className="flex px-8 py-6 items-center">
-        <Avatar name="shivang mishra" size="50" round={true}/>
+        <Avatar name={userInfo? userInfo.name : "Name"} size="50" round={true}/>
         <div className="flex-1 ml-4">
-          <p className="font-medium leading-none">Cesar Rome</p>
+          <p className="font-medium leading-none">{userInfo? userInfo.name : "Name"}</p>
           <p
             className="no-underline text-xs text-gray-300 leading-none cursor-pointer mt-1"
             onClick={handleLogout}

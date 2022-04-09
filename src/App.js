@@ -1,6 +1,4 @@
 import SideLogin from "./components/Authentication/SideLogin";
-// import SimpleSideNav from "./components/Dashboard/SimpleSideNav";
-
 import {
   BrowserRouter,
   Routes,
@@ -13,8 +11,7 @@ import { ConfigProvider } from 'react-avatar';
 
 function App() {
   return (
-    <ConfigProvider colors={['red', 'green', 'blue']}>
-
+    <ConfigProvider colors={['yellow', 'green', 'blue']}>
       <BrowserRouter>
         <div className="App">
 
