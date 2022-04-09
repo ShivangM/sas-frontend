@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import { useNavigate } from "react-router-dom"
 import SimpleSideNav from './SimpleSideNav';
-import ViewAttendance from './Students/ViewAttendance';
+import ViewAttendance from './Students/ViewAttendance/ViewAttendance';
 import axios from "axios"
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import { userDataActions } from '../../store/userDataSlice';
+import AnalyseAttendance from './Students/AnalyseAttendance/AnalyseAttendance';
+import AccountSettings from './Students/AccountSettings/AccountSettings';
 
 function Dashboard() {
     let history = useNavigate();
@@ -30,11 +32,22 @@ function Dashboard() {
             history("/")
         }
     }, [])
+    
+    const active = useSelector(state=> state.navItem.number)
+
+    const activeComponent = ()=>{
+        switch (active) {
+            case 0: return <ViewAttendance/>
+            case 1: return <AnalyseAttendance/>
+            case 2: return <AccountSettings/>
+            default: return <ViewAttendance/>
+        }
+    }
 
     return (
         <div className='w-screen flex'>
             <SimpleSideNav/>
-            <ViewAttendance/>
+            {activeComponent()}
         </div>
     )
 }
