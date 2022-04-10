@@ -1,21 +1,22 @@
 import React from "react"
 import { useSelector } from "react-redux"
 
-function SubjectsTable() {
+function StripedTable() {
   const thClass =
-    "px-4 py-4 text-left bg-blue-900 text-white text-sm font-medium"
-  const tdClass = "px-4 py-8 border-t border-b border-gray-300 text-sm"
+    "px-3 py-4 text-left bg-blue-900 text-white text-xs font-medium sm:text-sm sm:px-4"
+  const tdClass = "px-3 py-4 border-t border-b border-gray-300 text-xs sm:text-sm sm:px-4"
   const trClass = "border-gray-300 even:bg-gray-300"
 
   const attendanceData = useSelector(state => state.attendance.attendance)
 
   return (
-    <table className="w-[90%] table-auto rounded-sm">
+    <table className="w-full table-auto rounded-sm">
       <thead>
         <tr>
           <th className={thClass}>Subject Code</th>
           <th className={thClass}>Subject Name</th>
           <th className={thClass}>Faculty</th>
+          <th className={thClass}>Attendance</th>
         </tr>
       </thead>
       <tbody>
@@ -27,6 +28,7 @@ function SubjectsTable() {
                   <td className={tdClass}>{value.subject_code}</td>
                   <td className={tdClass}>{value.subject_name}</td>
                   <td className={tdClass}>{value.name}</td>
+                  <td className={tdClass}>80%</td>
                 </tr>
               )
             })
@@ -37,4 +39,4 @@ function SubjectsTable() {
   )
 }
 
-export default SubjectsTable
+export default StripedTable

@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .react-calendar-heatmap .color-Present {
+        fill: #00C49F;
+    }
+
+    .react-calendar-heatmap .color-Absent {
+        fill: #F08080;
+    }
+
+    .react-calendar-heatmap .color-empty {
+        fill: #d1d5db !important;
+    }
+}

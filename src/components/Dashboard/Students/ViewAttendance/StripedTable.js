@@ -3,8 +3,8 @@ import { useSelector } from "react-redux"
 
 function StripedTable() {
   const thClass =
-    "px-4 py-4 text-left bg-blue-900 text-white text-sm font-medium"
-  const tdClass = "px-4 py-8 border-t border-b border-gray-300 text-sm"
+    "px-3 py-4 text-left bg-blue-900 text-white text-xs font-medium sm:text-sm sm:px-4"
+  const tdClass = "px-3 py-4 border-t border-b border-gray-300 text-xs sm:text-sm sm:px-4"
   const trClass = "border-gray-300 even:bg-gray-300"
 
   const attendanceData = useSelector(state => state.attendance.attendance)

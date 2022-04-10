@@ -45,7 +45,7 @@ function Dashboard() {
     }
 
     return (
-        <div className='w-screen flex'>
+        <div className='w-screen flex h-screen overflow-hidden'>
             <SimpleSideNav/>
             {activeComponent()}
         </div>
