@@ -28,7 +28,7 @@ function StripedTable() {
                   <td className={tdClass}>{value.subject_code}</td>
                   <td className={tdClass}>{value.subject_name}</td>
                   <td className={tdClass}>{value.name}</td>
-                  <td className={tdClass}>{subjects.percentage[index]?subjects.percentage[index]: 100}</td>
+                  <td className={tdClass}>{subjects.percentage[index]?Math.round(subjects.percentage[index]): 100}</td>
                 </tr>
               )
             })

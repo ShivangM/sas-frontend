@@ -26,7 +26,7 @@ function AnalyseAttendance() {
         <div className="w-full flex align-middle items-center flex-col overflow-y-scroll">
             <div className='text-center font-semibold text-3xl py-8'>Analyse Attendance</div>
 
-            <div className="sm:w-[90%] my-6">
+            <div className="w-[90%] my-6">
                 <h1 className='py-3 text-lg font-semibold'>Your Subjects: </h1>
                 <SubjectsTable />
             </div>
@@ -38,7 +38,7 @@ function AnalyseAttendance() {
                         const data = subjects.calanderData.filter(items => items.subject_code === value.subject_code)
 
                         return (
-                            <div className="sm:w-[90%] my-6">
+                            <div className="w-[90%] my-6">
                                 <h1 className='py-3 text-lg font-semibold'>{value.subject_name} ({value.subject_code}):</h1>
                                 <SubjectAnalysis data = {data} percentage = {subjects.percentage[index]?subjects.percentage[index]: 100}/>
                             </div>
