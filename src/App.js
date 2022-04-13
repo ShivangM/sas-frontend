@@ -8,14 +8,19 @@ import SideSignup from "./components/Authentication/SideSignup";
 import Home from "./components/Home";
 import Dashboard from "./components/Dashboard/Dashboard";
 import { ConfigProvider } from 'react-avatar';
-import ReactLoading from 'react-loading';
+import Loading from "./components/Loading";
+import { useSelector } from 'react-redux';
 
 function App() {
+
+  const loading = useSelector(state => state.loading.loading.loading)
+  const loadingMsg = useSelector(state => state.loading.loading.msg)
+
   return (
     <ConfigProvider colors={['yellow', 'green', 'blue']}>
       <BrowserRouter>
         <div className="App">
-        {/* <ReactLoading type={"cylon"} color={"blue"} height={'20%'} width={'20%'} /> */}
+          {loading? <Loading msg={loadingMsg}/>: null} 
 
           {/* Routes */}
           <Routes>

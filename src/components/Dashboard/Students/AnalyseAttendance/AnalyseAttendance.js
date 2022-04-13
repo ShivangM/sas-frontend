@@ -5,6 +5,7 @@ import SubjectsTable from './SubjectsTable'
 import { useDispatch } from "react-redux"
 import { subjectActions } from '../../../../store/subjectSlice'
 import axios from "axios"
+import { loadingActions } from '../../../../store/loadingSlice';
 
 function AnalyseAttendance() {
 
@@ -13,7 +14,9 @@ function AnalyseAttendance() {
     useEffect(() => {
         const getattendance = async () => {
             const url = "https://sasietdavv-backend.herokuapp.com/api/data/getsubjects";
+            dispatch(loadingActions.setLoading({ loading: true, msg: "Loading Attendance" }))
             const subjectsData = await axios.post(url).catch(err => alert(err))
+            dispatch(loadingActions.setLoading({ loading: false, msg: "Loading Attendance" }))
             dispatch(subjectActions.setSubjectData(subjectsData.data))
         }
 

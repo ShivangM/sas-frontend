@@ -3,6 +3,7 @@ import StripedTable from './StripedTable'
 import axios from "axios"
 import {useDispatch} from "react-redux"
 import { attendaceActions } from '../../../../store/attendanceSlice'
+import { loadingActions } from '../../../../store/loadingSlice'
 
 function ViewAttendance() {
     const dispatch = useDispatch()
@@ -10,7 +11,9 @@ function ViewAttendance() {
     useEffect(() => {
         const getattendance = async ()=>{
             const url = "https://sasietdavv-backend.herokuapp.com/api/data/getattendance";
+            dispatch(loadingActions.setLoading({ loading: true, msg: "Loading Attendance" }))
             const attendanceData = await axios.post(url).catch(err=> alert(err))
+            dispatch(loadingActions.setLoading({ loading: false, msg: "loading" }))
             dispatch(attendaceActions.setAttendance(attendanceData.data))
         }
 

@@ -3,26 +3,32 @@ import Button from "./Button";
 import FormGroup from "./FormGroup";
 import InputGroup from "./InputGroup";
 import { useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux";
+import { loadingActions } from "../../store/loadingSlice";
 
 function SideLogin(props) {
 
   const [credentials, setCredentials] = useState({ email: "", password: "" })
   let history = useNavigate();
+  const dispatch = useDispatch();
+  const type = useSelector(state => state.type.type)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    dispatch(loadingActions.setLoading({ loading: true, msg: "loading" }))
     const response = await fetch("https://sasietdavv-backend.herokuapp.com/api/auth/login", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email: credentials.email, password: credentials.password })
+      body: JSON.stringify({ email: credentials.email, password: credentials.password, type: type })
     });
     const json = await response.json()
 
+    dispatch(loadingActions.setLoading({ loading: false, msg: "loading" }))
     if (json.success) {
       localStorage.setItem('token', json.authToken)
-      alert("Logged in successfully")
       history("/dashboard")
     }
     else {
@@ -55,17 +61,13 @@ function SideLogin(props) {
             alt="logo"
           />
           <div className="mt-10">
-            <h2 className="text-3xl font-bold text-gray-800">{props.type === "student" ? "Welcome back" : "Faculty Login"}</h2>
-
-            {props.type === "student" ?
-              <p className="mt-3 text-gray-800">
-                New to Student Attendance System?{" "}
-                <a href="/signup" className="text-blue-400">
-                  Sign up
-                </a>
-              </p>
-              : null
-            }
+            <h2 className="text-3xl font-bold text-gray-800">{type === "student" ? "Welcome back" : "Faculty Login"}</h2>
+            <p className="mt-3 text-gray-800">
+              New to Student Attendance System?{" "}
+              <a href="/signup" className="text-blue-400">
+                Sign up
+              </a>
+            </p>
           </div>
           <div className="mt-12">
             <FormGroup>

@@ -7,6 +7,8 @@ import {useDispatch, useSelector} from "react-redux"
 import { userDataActions } from '../../store/userDataSlice';
 import AnalyseAttendance from './Students/AnalyseAttendance/AnalyseAttendance';
 import AccountSettings from './Students/AccountSettings/AccountSettings';
+import FeedAttendance from './Teachers/FeedAttendance/FeedAttendance';
+import AnalyseAttendanceTeachers from './Teachers/AnalyseAttendanceTeachers/AnalyseAttendanceTeachers';
 
 function Dashboard() {
     let history = useNavigate();
@@ -16,6 +18,8 @@ function Dashboard() {
         config.headers.authToken = localStorage.getItem('token');
         return config;
     });
+
+    const type = useSelector(state => state.type.type)
 
     useEffect(() => {
         if (localStorage.getItem('token')) {
@@ -37,8 +41,8 @@ function Dashboard() {
 
     const activeComponent = ()=>{
         switch (active) {
-            case 0: return <ViewAttendance/>
-            case 1: return <AnalyseAttendance/>
+            case 0: return type==="student"?<ViewAttendance/> : <FeedAttendance/>
+            case 1: return type==="student"?<AnalyseAttendance/> : <AnalyseAttendanceTeachers/>
             case 2: return <AccountSettings/>
             default: return <ViewAttendance/>
         }
