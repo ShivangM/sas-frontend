@@ -4,19 +4,14 @@ import CalendarHeatmap from 'react-calendar-heatmap';
 import ReactTooltip from 'react-tooltip';
 import 'react-calendar-heatmap/dist/styles.css';
 
-function SubjectAnalysis() {
+function SubjectAnalysis(props) {
     return (
         <div className='flex flex-col justify-center items-center sm:flex-row'>
             <CalendarHeatmap
-                startDate={new Date('2016-01-01')}
-                endDate={new Date('2016-05-01')}
+                startDate={new Date('2022-03-01')}
+                endDate={new Date('2022-08-01')}
                 showWeekdayLabels={true}
-                values={[
-                    { date: "2016-01-01", status: "Present" },
-                    { date: "2016-01-03", status: "Absent" },
-                    { date: "2016-01-06", status: "Present" },
-                    // ...and so on
-                ]}
+                values={props.data}
 
                 showOutOfRangeDays={true}
 
@@ -34,7 +29,7 @@ function SubjectAnalysis() {
                   }}
             />
             <ReactTooltip />
-            <PieGraph />
+            <PieGraph percentage = {props.percentage}/>
         </div>
     )
 }

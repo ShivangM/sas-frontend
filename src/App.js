@@ -8,12 +8,14 @@ import SideSignup from "./components/Authentication/SideSignup";
 import Home from "./components/Home";
 import Dashboard from "./components/Dashboard/Dashboard";
 import { ConfigProvider } from 'react-avatar';
+import ReactLoading from 'react-loading';
 
 function App() {
   return (
     <ConfigProvider colors={['yellow', 'green', 'blue']}>
       <BrowserRouter>
         <div className="App">
+        {/* <ReactLoading type={"cylon"} color={"blue"} height={'20%'} width={'20%'} /> */}
 
           {/* Routes */}
           <Routes>

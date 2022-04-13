@@ -14,4 +14,9 @@
     .react-calendar-heatmap .color-empty {
         fill: #d1d5db !important;
     }
+
+}
+
+.recharts-wrapper{
+    z-index: -1;
 }

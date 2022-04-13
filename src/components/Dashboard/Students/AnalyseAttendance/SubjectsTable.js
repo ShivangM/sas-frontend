@@ -7,7 +7,7 @@ function StripedTable() {
   const tdClass = "px-3 py-4 border-t border-b border-gray-300 text-xs sm:text-sm sm:px-4"
   const trClass = "border-gray-300 even:bg-gray-300"
 
-  const attendanceData = useSelector(state => state.attendance.attendance)
+  const subjects = useSelector(state=> state.subject.subjectData)
 
   return (
     <table className="w-full table-auto rounded-sm">
@@ -21,14 +21,14 @@ function StripedTable() {
       </thead>
       <tbody>
         {
-          attendanceData.length > 0 ?
-            attendanceData.map((value, index) => {
+          subjects.subjectDetails ?
+            subjects.subjectDetails.map((value, index) => {
               return (
                 <tr className={trClass} key={index}>
                   <td className={tdClass}>{value.subject_code}</td>
                   <td className={tdClass}>{value.subject_name}</td>
                   <td className={tdClass}>{value.name}</td>
-                  <td className={tdClass}>80%</td>
+                  <td className={tdClass}>{subjects.percentage[index]?subjects.percentage[index]: 100}</td>
                 </tr>
               )
             })

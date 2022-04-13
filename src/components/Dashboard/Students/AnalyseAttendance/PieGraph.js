@@ -1,11 +1,11 @@
 import React, {PureComponent} from 'react'
 import { PieChart, Sector, Pie, Cell, ResponsiveContainer } from 'recharts';
 
-function PieGraph() {
+function PieGraph(props) {
 
     const data = [
-        { name: 'Present', value: 400 },
-        { name: 'Absent', value: 300 },
+        { name: 'Present', value: props.percentage },
+        { name: 'Absent', value: (100 - props.percentage) },
     ];
 
     const COLORS = ['#00C49F', '#F08080'];

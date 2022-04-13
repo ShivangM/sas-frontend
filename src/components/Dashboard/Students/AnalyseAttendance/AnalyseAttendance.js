@@ -1,30 +1,51 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import SubjectAnalysis from './SubjectAnalysis';
 import SubjectsTable from './SubjectsTable'
+import { useDispatch } from "react-redux"
+import { subjectActions } from '../../../../store/subjectSlice'
+import axios from "axios"
 
 function AnalyseAttendance() {
 
-    // const subjects = useSelector(state=> state.subjects.subjects)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        const getattendance = async () => {
+            const url = "https://sasietdavv-backend.herokuapp.com/api/data/getsubjects";
+            const subjectsData = await axios.post(url).catch(err => alert(err))
+            dispatch(subjectActions.setSubjectData(subjectsData.data))
+        }
+
+        getattendance()
+    }, []);
+
+    const subjects = useSelector(state => state.subject.subjectData)
 
     return (
         <div className="w-full flex align-middle items-center flex-col overflow-y-scroll">
             <div className='text-center font-semibold text-3xl py-8'>Analyse Attendance</div>
 
-            <div className="w-[90%] my-6">
+            <div className="sm:w-[90%] my-6">
                 <h1 className='py-3 text-lg font-semibold'>Your Subjects: </h1>
                 <SubjectsTable />
             </div>
 
-            <div className="w-[90%] my-6">
-            <h1 className='py-3 text-lg font-semibold'>Subject 1: </h1>
-                <SubjectAnalysis/>
-            </div>
+            {
+                subjects.subjectDetails ?
+                    subjects.subjectDetails.map((value, index) => {
+                        
+                        const data = subjects.calanderData.filter(items => items.subject_code === value.subject_code)
 
-            <div className="w-[90%] my-6">
-            <h1 className='py-3 text-lg font-semibold'>Subject 2: </h1>
-                <SubjectAnalysis/>
-            </div>
+                        return (
+                            <div className="sm:w-[90%] my-6">
+                                <h1 className='py-3 text-lg font-semibold'>{value.subject_name} ({value.subject_code}):</h1>
+                                <SubjectAnalysis data = {data} percentage = {subjects.percentage[index]?subjects.percentage[index]: 100}/>
+                            </div>
+                        )
+                    })
+                    : null
+            }
         </div>
     )
 }
