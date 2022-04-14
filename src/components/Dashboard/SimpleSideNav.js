@@ -20,7 +20,7 @@ function SimpleSideNav() {
   let inactive = "flex justify-between no-underline w-full px-8 py-3 border-l-2 border-transparent text-sm transition-colors duration-200 ease-in-out hover:text-blue-400 cursor-pointer "
 
   let navClass =
-    "w-72 max-w-full bg-blue-800 h-screen flex flex-col text-white fixed lg:absolute lg:sticky top-0 transition-transform transform duration-500 ease"
+    "w-72 max-w-full bg-blue-800 h-screen flex flex-col z-10 text-white fixed lg:absolute lg:sticky top-0 transition-transform transform duration-500 ease"
   if (mobileOpen) navClass += " translate-x-0"
   else navClass += " -translate-x-full lg:translate-x-0"
 

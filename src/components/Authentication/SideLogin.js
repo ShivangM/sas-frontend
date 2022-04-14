@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { loadingActions } from "../../store/loadingSlice";
 
-function SideLogin(props) {
+function SideLogin() {
 
   const [credentials, setCredentials] = useState({ email: "", password: "" })
   let history = useNavigate();
@@ -16,7 +16,7 @@ function SideLogin(props) {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    dispatch(loadingActions.setLoading({ loading: true, msg: "loading" }))
+    dispatch(loadingActions.setLoading({ loading: true, msg: "Authenticating..." }))
     const response = await fetch("https://sasietdavv-backend.herokuapp.com/api/auth/login", {
       method: 'POST',
       headers: {
@@ -99,8 +99,6 @@ function SideLogin(props) {
 
             <div className="mt-6 border-t border-b border-gray-300"></div>
 
-            {
-              props.type === "student" ?
                 <p className="text-sm mt-6 text-left">
                   By continuing you accept our{" "}
                   <a href="/" className="text-blue-400">
@@ -112,8 +110,6 @@ function SideLogin(props) {
                   </a>
                   .
                 </p>
-                : null
-            }
           </div>
         </form>
       </div>

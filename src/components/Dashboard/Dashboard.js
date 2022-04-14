@@ -19,7 +19,6 @@ function Dashboard() {
         return config;
     });
 
-    const first = true
     const type = useSelector(state => state.type.type)
 
     useEffect(() => {
@@ -27,7 +26,7 @@ function Dashboard() {
 
             const getUser = async ()=>{
                 const url = "https://sasietdavv-backend.herokuapp.com/api/auth/getuser";
-                const userData = await axios.post(url).catch(err=> alert(err))
+                const userData = await axios.post(url, {type: type}).catch(err=> alert(err))
                 dispatch(userDataActions.setUserData(userData.data[0]))
             }
 
