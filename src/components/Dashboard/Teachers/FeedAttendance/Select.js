@@ -6,15 +6,12 @@ function Select(props) {
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
                 {props.title}
             </label>
-            <div class="relative">
+            <div class="relative -z-10">
                 <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                     {
                         props.data ?
                             props.data.map((value) => {
-                                return
-                                (
-                                    <option>{value}</option>
-                                )
+                                return(<option>{value}</option>)
                             })
                             : props.title
                     }

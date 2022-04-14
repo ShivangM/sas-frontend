@@ -20,3 +20,8 @@
 .recharts-wrapper{
     z-index: -1;
 }
+
+.react-calender{
+    width: 100%;
+    height: 100%;
+}

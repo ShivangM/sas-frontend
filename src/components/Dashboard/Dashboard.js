@@ -19,6 +19,7 @@ function Dashboard() {
         return config;
     });
 
+    const first = true
     const type = useSelector(state => state.type.type)
 
     useEffect(() => {

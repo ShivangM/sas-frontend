@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import AttendanceTable from './AttendanceTable';
 import Select from './Select';
 
 function FeedAttendance() {
@@ -19,7 +20,7 @@ function FeedAttendance() {
           <Select title={"Select Section"}/>
         </div>
 
-        <div className="sm:w-[40%] flex flex-col">
+        <div className="sm:w-[40%] flex flex-col  px-3">
           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
             Select Date
           </label>
@@ -27,6 +28,11 @@ function FeedAttendance() {
         </div>
 
       </div>
+
+      <div className="w-[90%] my-6 flex flex-col sm:flex-row justify-around">
+        <AttendanceTable/>
+      </div>
+
     </div>
   )
 }
