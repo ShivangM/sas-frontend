@@ -30,7 +30,7 @@ function AnalyseAttendance() {
             <div className='text-center font-semibold text-3xl py-8'>Analyse Attendance</div>
 
             <div className="w-[90%] my-6">
-                <h1 className='py-3 text-lg font-semibold'>Your Subjects: </h1>
+                <h1 className='pb-3 text-lg font-semibold'>Your Subjects: </h1>
                 <SubjectsTable />
             </div>
 

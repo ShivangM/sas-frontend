@@ -31,6 +31,7 @@ function SimpleSideNav() {
 
   const userInfo = useSelector(state => state.userData.userData)
   const activeItem = useSelector(state=> state.navItem.number)
+  const type = useSelector(state => state.type.type)
 
   const NavItem = (props) => {
     return (
@@ -57,7 +58,7 @@ function SimpleSideNav() {
         </a>
         <div className="flex-1 mt-8">
           <div className="mt-6">
-            <NavItem option = "View Attendance" number = {0} icon={faHome}/>
+            <NavItem option = {type==="student"? "View Attendance": "Feed Attendance"} number = {0} icon={faHome}/>
             <NavItem option = "Analyze Attendance" number = {1} icon={faHome}/>
             <NavItem option = "Account Settings" number = {2} icon={faCog}/>
           </div>
