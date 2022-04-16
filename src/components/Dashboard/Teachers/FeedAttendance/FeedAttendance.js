@@ -43,10 +43,10 @@ function FeedAttendance() {
                 <span>Subject Code: </span>
                 <span className="text-sm font-normal">{subject.subject_code}</span>
               </div>
-              {/* <div className={rowClass}>
+              <div className={rowClass}>
                 <span>Subject Name</span>
                 <span className="text-sm font-normal">{subject.subject_name}</span>
-              </div> */}
+              </div>
               <div className={rowClass}>
                 <span>Class Strength: </span>
                 <span className="text-sm font-normal">{attendanceData.length}</span>
