@@ -10,7 +10,7 @@ function StripedTable() {
   const attendanceData = useSelector(state => state.attendance.attendance)
 
   return (
-    <table className="w-[90%] table-auto rounded-sm">
+    <table className="w-[90%] table-auto rounded-sm h-screen overflow-scroll">
       <thead>
         <tr>
           <th className={thClass}>Date</th>

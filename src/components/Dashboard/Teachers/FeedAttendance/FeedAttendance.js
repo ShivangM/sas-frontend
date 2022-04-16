@@ -56,7 +56,7 @@ function FeedAttendance() {
           </div>
         </div>
 
-        <div className="sm:w-[40%] flex flex-col  px-3">
+        <div className="md:w-[40%] flex flex-col  px-3 mt-6 md:mt-0">
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
             Select Date
           </label>
