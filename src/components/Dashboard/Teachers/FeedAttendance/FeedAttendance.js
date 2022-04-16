@@ -37,7 +37,7 @@ function FeedAttendance() {
           <Select title={"Select Class"} data={teaches} />
           <div className="px-3">
 
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Class Details: </label>
+            <label className="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2">Class Details: </label>
             <div className="mt-4">
               <div className={rowClass}>
                 <span>Subject Code: </span>
@@ -57,7 +57,7 @@ function FeedAttendance() {
         </div>
 
         <div className="md:w-[40%] flex flex-col  px-3 mt-6 md:mt-0">
-          <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          <label className="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2">
             Select Date
           </label>
           <Calendar onChange={onChange} value={value} />
