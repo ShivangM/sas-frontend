@@ -46,7 +46,7 @@ function FeedAttendance() {
       </div>
 
       <div className="w-[90%] my-6 flex flex-col sm:flex-row justify-around">
-        <AttendanceTable date={value.toISOString()}/>
+        <AttendanceTable date={date}/>
       </div>
 
     </div>
