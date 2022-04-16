@@ -3,10 +3,14 @@ import Button from "./Button";
 import FormGroup from "./FormGroup";
 import InputGroup from "./InputGroup";
 import {useNavigate} from "react-router-dom"
+import { useSelector } from "react-redux";
 
 function SideSignup() {
 
   const [credentials, setCredentials] = useState({email: "", password: ""})
+  // const type = useSelector(state => state.type.type)
+  const type = localStorage.getItem("type")
+  console.log(type)
   let history = useNavigate()
   
     const handleSubmit = async (e)=>{
@@ -17,7 +21,7 @@ function SideSignup() {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({email: email, password: password}) 
+            body: JSON.stringify({email: email, password: password, type: type}) 
           });
         const json = await response.json()
   

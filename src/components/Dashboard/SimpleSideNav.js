@@ -26,6 +26,7 @@ function SimpleSideNav() {
 
   const handleLogout = () => {
     localStorage.removeItem('token')
+    localStorage.removeItem("type")
     history("/")
   }
 

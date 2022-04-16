@@ -4,12 +4,16 @@ import 'react-calendar/dist/Calendar.css';
 import AttendanceTable from './AttendanceTable';
 import Select from './Select';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loadingActions } from '../../../../store/loadingSlice';
 
 function FeedAttendance() {
   const [value, onChange] = useState(new Date());
   const [teaches, setTeaches] = useState({});
+
+  const attendanceData = useSelector(state => state.attendance.classStudents)
+  const subject = useSelector(state => state.subject.classSubject)
+
   const dispatch = useDispatch()
 
   useEffect(async () => {
@@ -20,7 +24,8 @@ function FeedAttendance() {
     dispatch(loadingActions.setLoading({ loading: false, msg: "loading" }))
   }, []);
 
-  const date = `${value.getFullYear()}-${value.getMonth()+1}-${value.getDate()}`;
+  const date = `${value.getFullYear()}-${value.getMonth() + 1}-${value.getDate()}`;
+  const rowClass = "mb-2 flex justify-between items-center"
 
   return (
     <div className="w-[100%] flex align-middle items-center flex-col overflow-y-scroll">
@@ -33,6 +38,21 @@ function FeedAttendance() {
           <div className="px-3">
 
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Class Details: </label>
+            <div className="mt-4">
+              <div className={rowClass}>
+                <span>Subject Code: </span>
+                <span className="text-sm font-normal">{subject.subject_code}</span>
+              </div>
+              {/* <div className={rowClass}>
+                <span>Subject Name</span>
+                <span className="text-sm font-normal">{subject.subject_name}</span>
+              </div> */}
+              <div className={rowClass}>
+                <span>Class Strength: </span>
+                <span className="text-sm font-normal">{attendanceData.length}</span>
+              </div>
+            </div>
+
           </div>
         </div>
 

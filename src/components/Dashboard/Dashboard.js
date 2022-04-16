@@ -19,7 +19,8 @@ function Dashboard() {
         return config;
     });
 
-    const type = useSelector(state => state.type.type)
+    // const type = useSelector(state => state.type.type)
+    const type = localStorage.getItem("type")
 
     useEffect(() => {
         if (localStorage.getItem('token')) {

@@ -1,14 +1,15 @@
 import React from 'react'
-import { useDispatch, useSelector} from 'react-redux'
-import { typeActions } from '../store/typeSlice'
+// import { useDispatch, useSelector} from 'react-redux'
+// import { typeActions } from '../store/typeSlice'
 import { useNavigate } from "react-router-dom";
 
 function Home() {
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     const history = useNavigate()
 
     const setType = async (type)=>{
-        dispatch(typeActions.setType(type))
+        // dispatch(typeActions.setType(type))
+        localStorage.setItem("type", type)
         history("/login")
     }
 

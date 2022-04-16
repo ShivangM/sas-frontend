@@ -11,7 +11,8 @@ function SideLogin() {
   const [credentials, setCredentials] = useState({ email: "", password: "" })
   let history = useNavigate();
   const dispatch = useDispatch();
-  const type = useSelector(state => state.type.type)
+  // const type = useSelector(state => state.type.type)
+  const type = localStorage.getItem("type")
 
   const handleSubmit = async (e) => {
     e.preventDefault()
