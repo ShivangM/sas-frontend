@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit"
 
 const attendaceSlice = createSlice({
     name: "attendance",
-    initialState: {attendance: {}, classStudents: [{ roll_number: "rn", name: "name" }], attendanceList: []},
+    initialState: {attendance: {}, classStudents: [{ roll_number: "rn", name: "name" }], attendanceList: [], strengthondate: [], attendanceondate: []},
     reducers: {
         setAttendance(state, action){
             state.attendance = action.payload
@@ -14,6 +14,12 @@ const attendaceSlice = createSlice({
 
         setAttendanceList(state, action){
             state.attendanceList = action.payload
+        },
+        setAttendanceOnDate(state, action){
+            state.attendanceondate = action.payload
+        },
+        setStrengthOnDate(state, action){
+            state.strengthondate = action.payload
         },
     }
 })

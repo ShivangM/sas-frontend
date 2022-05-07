@@ -32,7 +32,7 @@ function SimpleSideNav() {
 
   const userInfo = useSelector(state => state.userData.userData)
   const activeItem = useSelector(state=> state.navItem.number)
-  const type = useSelector(state => state.type.type)
+  const type = localStorage.getItem("type")
 
   const NavItem = (props) => {
     return (

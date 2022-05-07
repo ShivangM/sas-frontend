@@ -4,27 +4,27 @@ import axios from "axios"
 import { loadingActions } from "../../../../store/loadingSlice"
 import { attendaceActions } from "../../../../store/attendanceSlice"
 import { subjectActions } from "../../../../store/subjectSlice"
+import Page404 from "./Page404"
 
 function AttendanceTable(props) {
   const thClass = "px-3 py-4 text-left bg-blue-900 text-white text-xs font-medium sm:text-sm sm:px-4"
   const tdClass = "px-3 py-4 border-t border-b border-gray-300 text-xs sm:text-sm sm:px-4"
   const trClass = "border-gray-300 even:bg-gray-300"
 
-  const filterData = useSelector(state => state.filterData.data)
+  const subject = useSelector(state => state.subject.classSubject)
   const dispatch = useDispatch()
 
-  const attendanceData = useSelector(state => state.attendance.classStudents)
+  const attendanceData = useSelector(state => state.attendance.attendanceondate)
 
   useEffect(async () => {
-    const url = "https://sasietdavv-backend.herokuapp.com/api/data/getclassstudents";
+    const url = "https://sasietdavv-backend.herokuapp.com/api/data/getattendanceondate";
     dispatch(loadingActions.setLoading({ loading: true, msg: "Loading Attendance" }))
 
-    const temp = await axios.post(url, filterData).catch(err => alert(err))
-    dispatch(subjectActions.setClassSubject(temp.data.subject[0]))
-    dispatch(attendaceActions.setClassStudents(temp.data.students))
-
+    const temp = await axios.post(url, {subject_code: subject.subject_code, date: props.date}).catch(err => alert(err))
+    dispatch(attendaceActions.setAttendanceOnDate(temp.data.attendanceOnDate))
+    dispatch(attendaceActions.setStrengthOnDate(temp.data.strengthOnDate))
     dispatch(loadingActions.setLoading({ loading: false, msg: "loading" }))
-  }, [filterData]);
+  }, [props.date || subject]);
 
   return (
       <table className="w-full table-auto rounded-sm max-h-screen overflow-y-scroll">
@@ -44,11 +44,11 @@ function AttendanceTable(props) {
                   <tr className={trClass} key={index}>
                     <td className={tdClass}>{value.roll_number}</td>
                     <td className={tdClass}>{value.name}</td>
-                    <td className={tdClass}>Present</td>
+                    <td className={tdClass}>{value.status}</td>
                   </tr>
                 )
               })
-              : null
+              : "Nothing To Show"
           }
 
         </tbody>

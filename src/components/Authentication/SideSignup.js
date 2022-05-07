@@ -10,7 +10,6 @@ function SideSignup() {
   const [credentials, setCredentials] = useState({email: "", password: ""})
   // const type = useSelector(state => state.type.type)
   const type = localStorage.getItem("type")
-  console.log(type)
   let history = useNavigate()
   
     const handleSubmit = async (e)=>{
@@ -23,16 +22,9 @@ function SideSignup() {
             },
             body: JSON.stringify({email: email, password: password, type: type}) 
           });
-        const json = await response.json()
-  
-        if(json.success){
-            localStorage.setItem('token', json.authToken)
-            alert("Account created successfully","success")
-            history("/dashboard")
-        }
-        else{
-            alert(json.error)
-        }
+
+        response.status === 200?alert("Verification email sent please verify your account to continue."):alert("Some error occured")
+        e.target.reset()
     }
   
     const handleEmail = (e) => {

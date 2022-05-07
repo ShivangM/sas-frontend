@@ -6,6 +6,10 @@ import Select from './Select';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadingActions } from '../../../../store/loadingSlice';
+import CalendarHeatmap from 'react-calendar-heatmap';
+import ReactTooltip from 'react-tooltip';
+import 'react-calendar-heatmap/dist/styles.css';
+import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 function AnalyseAttendanceTeachers() {
   const [value, onChange] = useState(new Date());
@@ -13,6 +17,9 @@ function AnalyseAttendanceTeachers() {
 
   const attendanceData = useSelector(state => state.attendance.classStudents)
   const subject = useSelector(state => state.subject.classSubject)
+
+  const strengthData = useSelector(state => state.attendance.strengthondate)
+  console.log(strengthData)
 
   const dispatch = useDispatch()
 
@@ -35,7 +42,7 @@ function AnalyseAttendanceTeachers() {
 
         <div className="sm:w-[40%]">
           <Select title={"Select Class"} data={teaches} />
-          <div className="px-3">
+          {/* <div className="px-3">
 
             <label className="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2">Class Details: </label>
             <div className="mt-4">
@@ -44,7 +51,7 @@ function AnalyseAttendanceTeachers() {
                 <span className="text-sm font-normal">{subject.subject_code}</span>
               </div>
               <div className={rowClass}>
-                <span>Subject Name</span>
+                <span>Subject Name:</span>
                 <span className="text-sm font-normal">{subject.subject_name}</span>
               </div>
               <div className={rowClass}>
@@ -53,7 +60,39 @@ function AnalyseAttendanceTeachers() {
               </div>
             </div>
 
-          </div>
+          </div> */}
+
+          {/* <CalendarHeatmap
+            startDate={new Date('2022-03-01')}
+            endDate={new Date('2022-08-31')}
+            showWeekdayLabels={true}
+            values={strengthData}
+
+            showOutOfRangeDays={true}
+
+            classForValue={(value) => {
+              if (!value) {
+                return 'color-empty';
+              }
+              return `color-Present`;
+            }}
+
+            tooltipDataAttrs={(value) => {
+              return {
+                "data-tip": `${value.date} has student count: ${value.count}`
+              };
+            }}
+          />
+          <ReactTooltip /> */}
+
+          <LineChart width={500} height={200} data={strengthData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="date" interval="preserveEnd" />
+            <YAxis interval="preserveEnd" />
+            <Legend />
+            <Line type="monotone" dataKey="count" stroke="#8884d8" activeDot={{ r: 8 }} />
+          </LineChart>
+
         </div>
 
         <div className="md:w-[40%] flex flex-col  px-3 mt-6 md:mt-0">
@@ -62,6 +101,10 @@ function AnalyseAttendanceTeachers() {
           </label>
           <Calendar onChange={onChange} value={value} />
         </div>
+
+      </div>
+
+      <div className="w-[90%] my-6 flex flex-col sm:flex-row justify-center">
 
       </div>
 
