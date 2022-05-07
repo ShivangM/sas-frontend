@@ -18,7 +18,6 @@ function App() {
   const [show, setShow] = useState(false);
   const loading = useSelector(state => state.loading.loading.loading)
   const loadingMsg = useSelector(state => state.loading.loading.msg)
-  console.log(loading)
   const notification = useSelector(state => state.notification.notification)
 
   useEffect(() => {

@@ -27,7 +27,7 @@ function SideSignup() {
 
         response.status === 200? 
         dispatch(notificationActions.setNotification({type:"sucess", message:"Verification email sent please verify your account to continue."})):
-        dispatch(notificationActions.setNotification({type:"error", message:response.statusText}))
+        dispatch(notificationActions.setNotification({type:"error", message: "A user with this email already exist or not authenticated by collage!"}))
         e.target.reset()
     }
   

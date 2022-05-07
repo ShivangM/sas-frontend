@@ -26,10 +26,11 @@ function SideLogin() {
       },
       body: JSON.stringify({ email: credentials.email, password: credentials.password, type: type })
     });
+
     const json = await response.json()
 
     dispatch(loadingActions.setLoading({ loading: false, msg: "loading" }))
-    if (json.success) {
+    if (response.status === 200) {
       localStorage.setItem('token', json.authToken)
       history("/dashboard")
     }
