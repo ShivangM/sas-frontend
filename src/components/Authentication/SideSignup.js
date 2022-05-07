@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import Button from "./Button";
 import FormGroup from "./FormGroup";
 import InputGroup from "./InputGroup";
-import {useNavigate} from "react-router-dom"
-import { useSelector } from "react-redux";
+// import {useNavigate} from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux";
+import { notificationActions } from "../../store/notificationSlice";
 
 function SideSignup() {
 
   const [credentials, setCredentials] = useState({email: "", password: ""})
   // const type = useSelector(state => state.type.type)
   const type = localStorage.getItem("type")
-  let history = useNavigate()
+  // let history = useNavigate()
+  let dispatch = useDispatch();
   
     const handleSubmit = async (e)=>{
         e.preventDefault()
@@ -24,6 +26,9 @@ function SideSignup() {
           });
 
         response.status === 200?alert("Verification email sent please verify your account to continue."):alert("Some error occured")
+        response.status === 200? 
+        dispatch(notificationActions.setNotification({type:"sucess", message:"Verification email sent please verify your account to continue."})):
+        dispatch(notificationActions.setNotification({type:"error", message:"Some error occured"}))
         e.target.reset()
     }
   

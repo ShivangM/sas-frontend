@@ -10,17 +10,20 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import { ConfigProvider } from 'react-avatar';
 import Loading from "./components/Loading";
 import { useSelector } from 'react-redux';
+import Alert from "./components/Alert";
 
 function App() {
 
   const loading = useSelector(state => state.loading.loading.loading)
-  const loadingMsg = useSelector(state => state.loading.loading.msg)
+  const loadingMsg = useSelector(state => state.loading.loading.loadingMsg)
+  const notification = useSelector(state => state.notification)
 
   return (
     <ConfigProvider colors={['yellow', 'green', 'blue']}>
       <BrowserRouter>
         <div className="App">
           {loading? <Loading msg={loadingMsg}/>: null} 
+          <Alert message={notification.message} type={notification.type}/>
 
           {/* Routes */}
           <Routes>

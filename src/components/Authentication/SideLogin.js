@@ -5,6 +5,7 @@ import InputGroup from "./InputGroup";
 import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { loadingActions } from "../../store/loadingSlice";
+import { notificationActions } from "../../store/notificationSlice";
 
 function SideLogin() {
 
@@ -33,7 +34,7 @@ function SideLogin() {
       history("/dashboard")
     }
     else {
-      alert(json.error)
+      dispatch(notificationActions.setNotification({type:"error",message:"Incorrect Email or Password!"}))
     }
   }
 

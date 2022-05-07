@@ -6,6 +6,7 @@ import subjectSlice from "./subjectSlice"
 import loadingSlice from "./loadingSlice"
 import typeSlice from "./typeSlice"
 import filterDataSlice from "./filterDataSlice"
+import notificationSlice from "./notificationSlice"
 
 const store = configureStore({
     reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
         loading: loadingSlice.reducer,
         type: typeSlice.reducer,
         filterData: filterDataSlice.reducer,
+        notification: notificationSlice.reducer,
     }
 })
 
