@@ -11,19 +11,29 @@ import { ConfigProvider } from 'react-avatar';
 import Loading from "./components/Loading";
 import { useSelector } from 'react-redux';
 import Alert from "./components/Alert";
+import {useState, useEffect} from "react"
 
 function App() {
 
+  const [show, setShow] = useState(false);
   const loading = useSelector(state => state.loading.loading.loading)
-  const loadingMsg = useSelector(state => state.loading.loading.loadingMsg)
-  const notification = useSelector(state => state.notification)
+  const loadingMsg = useSelector(state => state.loading.loading.msg)
+  console.log(loading)
+  const notification = useSelector(state => state.notification.notification)
+
+  useEffect(() => {
+    setShow(true)
+    setTimeout(() => {
+      setShow(false)
+    }, 3000);
+  }, [notification]);
 
   return (
     <ConfigProvider colors={['yellow', 'green', 'blue']}>
       <BrowserRouter>
         <div className="App">
           {loading? <Loading msg={loadingMsg}/>: null} 
-          <Alert message={notification.message} type={notification.type}/>
+          {show? <Alert message={notification.message} type={notification.type}/>:null}
 
           {/* Routes */}
           <Routes>

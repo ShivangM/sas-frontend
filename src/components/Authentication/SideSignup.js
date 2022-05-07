@@ -25,10 +25,9 @@ function SideSignup() {
             body: JSON.stringify({email: email, password: password, type: type}) 
           });
 
-        response.status === 200?alert("Verification email sent please verify your account to continue."):alert("Some error occured")
         response.status === 200? 
         dispatch(notificationActions.setNotification({type:"sucess", message:"Verification email sent please verify your account to continue."})):
-        dispatch(notificationActions.setNotification({type:"error", message:"Some error occured"}))
+        dispatch(notificationActions.setNotification({type:"error", message:response.statusText}))
         e.target.reset()
     }
   
