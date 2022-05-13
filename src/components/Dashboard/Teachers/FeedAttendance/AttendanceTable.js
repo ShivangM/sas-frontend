@@ -4,6 +4,9 @@ import axios from "axios"
 import { loadingActions } from "../../../../store/loadingSlice"
 import { attendaceActions } from "../../../../store/attendanceSlice"
 import { subjectActions } from "../../../../store/subjectSlice"
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import { notificationActions } from "../../../../store/notificationSlice"
 
 function AttendanceTable(props) {
   const thClass = "px-3 py-4 text-left bg-blue-900 text-white text-xs font-medium sm:text-sm sm:px-4"
@@ -31,7 +34,6 @@ function AttendanceTable(props) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const data = Object.fromEntries(new FormData(e.target))
-
     const list = []
 
     await attendanceData.forEach(element => {
@@ -44,12 +46,29 @@ function AttendanceTable(props) {
     });
 
     dispatch(attendaceActions.setAttendanceList(list))
-    
-    const url = "https://sasietdavv-backend.herokuapp.com/api/data/feedattendance";
-    dispatch(loadingActions.setLoading({ loading: true, msg: "Feeding Attendance" }))
-    const temp = await axios.post(url, { list: list }).catch(err => alert(err))
-    console.log(temp)
-    dispatch(loadingActions.setLoading({ loading: false, msg: "loading" }))
+
+    confirmAlert({
+      title: 'Confirm to submit',
+      message: 'Are you sure to do this.',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: async () => {
+            const url = "https://sasietdavv-backend.herokuapp.com/api/data/feedattendance";
+            dispatch(loadingActions.setLoading({ loading: true, msg: "Feeding Attendance" }))
+            const temp = await axios.post(url, { list: list }).catch(
+              ()=> {dispatch(notificationActions.setNotification({ type: "danger", message: "Attendance for date: " + props.date.substr(0,10) + " already feeded"}))}
+            )
+            dispatch(loadingActions.setLoading({ loading: false, msg: "loading" }))
+            dispatch(notificationActions.setNotification({ type: "success", message: "Attendance for date: " + props.date.substr(0,10) + " feeded!"}))
+          }
+        },
+        {
+          label: 'No',
+          onClick: () => {}
+        }
+      ]
+    });
   }
 
   const handleChange = (e) => {

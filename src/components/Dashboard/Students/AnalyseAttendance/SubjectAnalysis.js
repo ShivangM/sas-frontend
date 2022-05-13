@@ -24,7 +24,7 @@ function SubjectAnalysis(props) {
 
                 tooltipDataAttrs={(value) => {
                     return {
-                      "data-tip": `${value.date} has status: ${value.status}`
+                      "data-tip": value.date? `${value.date.substr(0,10)}: ${value.status}`: "No Class"
                     };
                   }}
             />

@@ -35,7 +35,7 @@ function SideLogin() {
       history("/dashboard")
     }
     else {
-      dispatch(notificationActions.setNotification({type:"error",message:"Incorrect Email or Password!"}))
+      dispatch(notificationActions.setNotification({type:"danger",message:"Incorrect Email or Password!"}))
     }
   }
 

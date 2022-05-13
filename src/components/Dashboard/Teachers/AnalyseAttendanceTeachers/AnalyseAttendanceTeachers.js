@@ -19,7 +19,10 @@ function AnalyseAttendanceTeachers() {
   const subject = useSelector(state => state.subject.classSubject)
 
   const strengthData = useSelector(state => state.attendance.strengthondate)
-  console.log(strengthData)
+
+  // for (let index = 0; index < strengthData.length; index++) {
+  //   strengthData[index].date = strengthData[index].date.substr(0,10)
+  // }
 
   const dispatch = useDispatch()
 

@@ -8,36 +8,36 @@ import { notificationActions } from "../../store/notificationSlice";
 
 function SideSignup() {
 
-  const [credentials, setCredentials] = useState({email: "", password: ""})
+  const [credentials, setCredentials] = useState({ email: "", password: "" })
   // const type = useSelector(state => state.type.type)
   const type = localStorage.getItem("type")
   // let history = useNavigate()
   let dispatch = useDispatch();
-  
-    const handleSubmit = async (e)=>{
-        e.preventDefault()
-        const {email, password} = credentials
-        const response = await fetch(`https://sasietdavv-backend.herokuapp.com/api/auth/createuser`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({email: email, password: password, type: type}) 
-          });
 
-        response.status === 200? 
-        dispatch(notificationActions.setNotification({type:"sucess", message:"Verification email sent please verify your account to continue."})):
-        dispatch(notificationActions.setNotification({type:"error", message: "A user with this email already exist or not authenticated by collage!"}))
-        e.target.reset()
-    }
-  
-    const handleEmail = (e) => {
-      setCredentials({ ...credentials, "email": e })
-    }
-  
-    const handlePassword = (e) => {
-      setCredentials({ ...credentials, "password": e })
-    }
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const { email, password } = credentials
+    const response = await fetch(`https://sasietdavv-backend.herokuapp.com/api/auth/createuser`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email: email, password: password, type: type })
+    });
+
+    response.status === 200 ?
+      dispatch(notificationActions.setNotification({ type: "success", message: "Verification email sent please verify your account to continue." })) :
+      dispatch(notificationActions.setNotification({ type: "danger", message: "A user with this email already exist or not authenticated by collage!" }))
+    e.target.reset()
+  }
+
+  const handleEmail = (e) => {
+    setCredentials({ ...credentials, "email": e })
+  }
+
+  const handlePassword = (e) => {
+    setCredentials({ ...credentials, "password": e })
+  }
 
   return (
     <div className="absolute w-screen h-screen flex">
@@ -58,9 +58,9 @@ function SideSignup() {
           <div className="mt-10">
             <h2 className="text-3xl font-bold text-gray-800">Signup to SAS</h2>
             <p className="mt-3 text-gray-800">
-              Use collage id for Signup! Already a user? 
+              Use collage id for Signup! Already a user?
               <a href="/login" className="text-blue-400">
-                Login
+                &nbsp;Login
               </a>
             </p>
           </div>
