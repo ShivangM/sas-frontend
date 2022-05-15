@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { notificationActions } from '../../../../store/notificationSlice'
 
-function AccountSettings() {
+function TeacherAccountSettings() {
 
     const dispatch = useDispatch()
     const type = localStorage.getItem("type")
@@ -22,13 +22,11 @@ function AccountSettings() {
                 body: JSON.stringify({ email: userData.email, newPassword: newPassword, password: password, type: type })
             })
 
-            console.log(response)
-
             response.status === 200 ?
                 dispatch(notificationActions.setNotification({ type: "success", message: "Your Password Has Been Changed" }))
-                :dispatch(notificationActions.setNotification({ type: "danger", message: "Some Error Occured! Please Fille Right Information" }))
-            
-                e.target.reset()
+                :
+                dispatch(notificationActions.setNotification({ type: "danger", message: "Some Error Occured! Please Fill Right Information" }))
+            e.target.reset()
         }
         else {
             dispatch(notificationActions.setNotification({ type: "danger", message: "Please confirm your password" }));
@@ -50,18 +48,8 @@ function AccountSettings() {
                 </div>
 
                 <div className="flex justify-between border-b-2 py-2">
-                    <label className="block text-gray-700 text-sm font-bold mb-2">Roll Number: </label>
-                    <p>{userData.roll_number}</p>
-                </div>
-
-                <div className="flex justify-between border-b-2 py-2">
                     <label className="block text-gray-700 text-sm font-bold mb-2">Email: </label>
                     <p>{userData.email}</p>
-                </div>
-
-                <div className="flex justify-between border-b-2 py-2">
-                    <label className="block text-gray-700 text-sm font-bold mb-2">Enrollment Number: </label>
-                    <p>{userData.enrollment_number}</p>
                 </div>
 
                 <p className='text-2xl py-4 font-semibold'>Change Password</p>
@@ -96,4 +84,4 @@ function AccountSettings() {
     )
 }
 
-export default AccountSettings
+export default TeacherAccountSettings

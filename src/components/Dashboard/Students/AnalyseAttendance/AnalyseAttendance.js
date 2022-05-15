@@ -37,13 +37,13 @@ function AnalyseAttendance() {
             {
                 subjects.subjectDetails ?
                     subjects.subjectDetails.map((value, index) => {
-                        
+
                         const data = subjects.calanderData.filter(items => items.subject_code === value.subject_code)
 
                         return (
                             <div className="w-[90%] my-6">
                                 <h1 className='py-3 text-lg font-semibold'>{value.subject_name} ({value.subject_code}):</h1>
-                                <SubjectAnalysis data = {data} percentage = {subjects.percentage[index]?subjects.percentage[index]: 100}/>
+                                <SubjectAnalysis data={data} percentage={subjects.percentage[index] ? subjects.percentage[index] : 100} />
                             </div>
                         )
                     })

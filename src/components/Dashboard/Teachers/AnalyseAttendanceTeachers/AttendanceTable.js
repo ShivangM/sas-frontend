@@ -48,7 +48,7 @@ function AttendanceTable(props) {
                   </tr>
                 )
               })
-              : "Nothing To Show"
+              : "Nothing To Show For This Date!"
           }
 
         </tbody>

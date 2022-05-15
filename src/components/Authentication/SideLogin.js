@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { loadingActions } from "../../store/loadingSlice";
 import { notificationActions } from "../../store/notificationSlice";
+import logo from "../../assets/logo2.svg"
 
 function SideLogin() {
 
@@ -56,14 +57,14 @@ function SideLogin() {
           alt="clg"
         />
       </div>
-      <div className="w-full lg:w-7/12 overflow-scroll py-24 relative">
+      <div className="w-full lg:w-7/12 overflow-scroll py-10 relative">
         <form className="w-5/6 sm:w-1/2 mx-auto text-center" onSubmit={handleSubmit}>
           <img
-            src="https://mace.edu.in/assets/uploads/notification/logo@2x.png"
-            className="h-8 block mx-auto"
+            src={logo}
+            className="block mx-auto w-3/4 py-2"
             alt="logo"
           />
-          <div className="mt-10">
+          <div className="mt-3 sm:mt-10">
             <h2 className="text-3xl font-bold text-gray-800">{type === "student" ? "Welcome back" : "Faculty Login"}</h2>
             <p className="mt-3 text-gray-800">
               New to Student Attendance System?{" "}

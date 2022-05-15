@@ -10,6 +10,7 @@ import Avatar from 'react-avatar';
 import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { navItemActions } from "../../store/navItemSlice";
+import logo from "../../assets/logo.svg"
 
 function SimpleSideNav() {
   const dispatch = useDispatch()
@@ -50,14 +51,14 @@ function SimpleSideNav() {
   return (
     <div className="">
       <div className={navClass}>
-        <a href="/" className="no-underline block mt-6">
+        <a href="/" className="no-underline block">
           <img
-            src="https://mace.edu.in/assets/uploads/notification/logo@2x.png"
-            className="w-40 mx-auto filter invert"
+            src={logo}
+            className=" mx-auto"
             alt="logo"
           />
         </a>
-        <div className="flex-1 mt-8">
+        <div className="flex-1">
           <div className="mt-6">
             <NavItem option = {type==="student"? "View Attendance": "Feed Attendance"} number = {0} icon={faHome}/>
             <NavItem option = "Analyze Attendance" number = {1} icon={faHome}/>

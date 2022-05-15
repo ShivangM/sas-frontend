@@ -9,6 +9,7 @@ import AnalyseAttendance from './Students/AnalyseAttendance/AnalyseAttendance';
 import AccountSettings from './Students/AccountSettings/AccountSettings';
 import FeedAttendance from './Teachers/FeedAttendance/FeedAttendance';
 import AnalyseAttendanceTeachers from './Teachers/AnalyseAttendanceTeachers/AnalyseAttendanceTeachers';
+import TeacherAccountSettings from './Teachers/AccountSettings/TeacherAccountSetting';
 
 function Dashboard() {
     let history = useNavigate();
@@ -44,7 +45,7 @@ function Dashboard() {
         switch (active) {
             case 0: return type==="student"?<ViewAttendance/> : <FeedAttendance/>
             case 1: return type==="student"?<AnalyseAttendance/> : <AnalyseAttendanceTeachers/>
-            case 2: return <AccountSettings/>
+            case 2: return type==="student"?<AccountSettings/>: <TeacherAccountSettings/>
             default: return <ViewAttendance/>
         }
     }

@@ -6,10 +6,8 @@ import Select from './Select';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadingActions } from '../../../../store/loadingSlice';
-import CalendarHeatmap from 'react-calendar-heatmap';
-import ReactTooltip from 'react-tooltip';
 import 'react-calendar-heatmap/dist/styles.css';
-import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 function AnalyseAttendanceTeachers() {
   const [value, onChange] = useState(new Date());
@@ -37,6 +35,15 @@ function AnalyseAttendanceTeachers() {
   const date = `${value.getFullYear()}-${value.getMonth() + 1}-${value.getDate()}`;
   const rowClass = "mb-2 flex justify-between items-center"
 
+var tooltip
+const CustomTooltip = ({ active, payload }) => {
+    if (!active || !tooltip)    return null
+    for (const bar of payload)
+        if (bar.date === tooltip)
+            return <div>{ bar.date }<br/>{ bar.count}</div>
+    return null
+}
+
   return (
     <div className="w-[100%] flex align-middle items-center flex-col overflow-y-scroll">
       <div className='text-center font-semibold text-3xl py-8'>Analyse Attendance</div>
@@ -45,56 +52,17 @@ function AnalyseAttendanceTeachers() {
 
         <div className="sm:w-[40%]">
           <Select title={"Select Class"} data={teaches} />
-          {/* <div className="px-3">
-
-            <label className="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2">Class Details: </label>
-            <div className="mt-4">
-              <div className={rowClass}>
-                <span>Subject Code: </span>
-                <span className="text-sm font-normal">{subject.subject_code}</span>
-              </div>
-              <div className={rowClass}>
-                <span>Subject Name:</span>
-                <span className="text-sm font-normal">{subject.subject_name}</span>
-              </div>
-              <div className={rowClass}>
-                <span>Class Strength: </span>
-                <span className="text-sm font-normal">{attendanceData.length}</span>
-              </div>
-            </div>
-
-          </div> */}
-
-          {/* <CalendarHeatmap
-            startDate={new Date('2022-03-01')}
-            endDate={new Date('2022-08-31')}
-            showWeekdayLabels={true}
-            values={strengthData}
-
-            showOutOfRangeDays={true}
-
-            classForValue={(value) => {
-              if (!value) {
-                return 'color-empty';
-              }
-              return `color-Present`;
-            }}
-
-            tooltipDataAttrs={(value) => {
-              return {
-                "data-tip": `${value.date} has student count: ${value.count}`
-              };
-            }}
-          />
-          <ReactTooltip /> */}
-
-          <LineChart width={500} height={200} data={strengthData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" interval="preserveEnd" />
-            <YAxis interval="preserveEnd" />
-            <Legend />
-            <Line type="monotone" dataKey="count" stroke="#8884d8" activeDot={{ r: 8 }} />
-          </LineChart>
+    
+          <ResponsiveContainer width="100%" height={250}>
+            <LineChart data={strengthData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="date" />
+              <YAxis />
+              <Tooltip active={true} content={<CustomTooltip/>}/>
+              <Legend />
+              <Line type="monotone" dataKey="count" stroke="#8884d8" onMouseOver={ () => tooltip="count" }/>
+            </LineChart>
+          </ResponsiveContainer>
 
         </div>
 

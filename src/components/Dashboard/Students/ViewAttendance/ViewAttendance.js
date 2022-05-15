@@ -40,7 +40,7 @@ function ViewAttendance() {
                     </select>
                 </form>
             </div> */}
-            <div className="h-[60vh] overflow-y-scroll w-[90%]">
+            <div className="h-[80%] overflow-y-scroll w-[90%]">
                 <StripedTable />
             </div>
         </div>

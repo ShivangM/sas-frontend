@@ -12,6 +12,8 @@ import Loading from "./components/Loading";
 import { useSelector } from 'react-redux';
 import Alert from "./components/Alert";
 import {useState, useEffect} from "react"
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function App() {
 
@@ -20,6 +22,13 @@ function App() {
   const loadingMsg = useSelector(state => state.loading.loading.msg)
   const notification = useSelector(state => state.notification.notification)
 
+  useEffect(() => {
+    AOS.init({
+      offset: 0,
+    });
+    AOS.refresh();
+  }, []);
+  
   useEffect(() => {
     setShow(true)
     setTimeout(() => {
