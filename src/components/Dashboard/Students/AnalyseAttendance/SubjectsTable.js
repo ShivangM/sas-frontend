@@ -10,7 +10,7 @@ function StripedTable() {
   const subjects = useSelector(state=> state.subject.subjectData)
 
   return (
-    <table className="w-[90%] overflow-scroll table-auto rounded-sm">
+    <table className="w-full table-auto rounded-sm">
       <thead>
         <tr>
           <th className={thClass}>Subject Code</th>
