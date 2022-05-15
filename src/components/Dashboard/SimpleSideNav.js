@@ -82,7 +82,7 @@ function SimpleSideNav() {
       <FontAwesomeIcon
         icon={mobileOpen ? faTimes : faBars}
         onClick={() => setMobileOpen(!mobileOpen)}
-        className="absolute right-10 transform translate-x-double top-0 mt-10 text-3xl text-blue-800 cursor-pointer lg:hidden"
+        className="absolute right-5 transform translate-x-double top-5 text-3xl text-blue-800 cursor-pointer lg:hidden"
       />
     </div>
   )
