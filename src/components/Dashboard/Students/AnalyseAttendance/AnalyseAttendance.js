@@ -26,8 +26,8 @@ function AnalyseAttendance() {
     const subjects = useSelector(state => state.subject.subjectData)
 
     return (
-        <div className="w-full flex align-middle items-center flex-col overflow-y-scroll">
-            <div className='text-center font-semibold text-3xl py-8'>Analyse Attendance</div>
+        <div className="w-full flex align-middle items-center flex-col overflow-y-scroll py-4">
+            <div className='text-center font-semibold text-3xl py-4'>Analyse Attendance</div>
 
             <div className="w-[90%] my-6">
                 <h1 className='pb-3 text-lg font-semibold'>Your Subjects: </h1>

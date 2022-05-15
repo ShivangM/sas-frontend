@@ -35,12 +35,12 @@ function TeacherAccountSettings() {
 
     const userData = useSelector(state => state.userData.userData)
     return (
-        <div className="w-[100%] flex align-middle items-center flex-col">
-            <div className='text-center font-semibold text-3xl py-8'>Account Settings</div>
+        <div className="w-[100%] flex align-middle items-center flex-col py-4 overflow-y-scroll">
+            <div className='text-center font-semibold text-3xl py-4'>Account Settings</div>
 
             <div className="w-[80%]">
 
-                <p className='text-2xl pb-3 font-semibold'>Your Details</p>
+                <p className='text-xl pb-3 font-semibold'>Your Details</p>
 
                 <div className="flex justify-between border-b-2 py-3">
                     <label className="block text-gray-700 text-sm font-bold mb-2">Name: </label>
@@ -52,7 +52,7 @@ function TeacherAccountSettings() {
                     <p>{userData.email}</p>
                 </div>
 
-                <p className='text-2xl py-4 font-semibold'>Change Password</p>
+                <p className='text-xl py-4 font-semibold'>Change Password</p>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" for="username">

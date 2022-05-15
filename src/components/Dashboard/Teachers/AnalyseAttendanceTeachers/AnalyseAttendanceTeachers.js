@@ -45,7 +45,7 @@ const CustomTooltip = ({ active, payload }) => {
 }
 
   return (
-    <div className="w-[100%] flex align-middle items-center flex-col overflow-y-scroll">
+    <div className="w-[100%] flex align-middle items-center flex-col overflow-y-scroll py-4">
       <div className='text-center font-semibold text-3xl py-8'>Analyse Attendance</div>
 
       <div className="w-[90%] my-6 flex flex-col sm:flex-row justify-between">
