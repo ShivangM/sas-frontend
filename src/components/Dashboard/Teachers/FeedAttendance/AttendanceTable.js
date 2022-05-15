@@ -71,13 +71,17 @@ function AttendanceTable(props) {
     });
   }
 
+  const handleClear = ()=>{
+    document.getElementById("attendanceForm").reset() 
+  }
+
   const handleChange = (e) => {
     const isSelected = e.target.checked
     isSelected ? setListCount(listCount + 1) : setListCount(listCount - 1)
   }
 
   return (
-    <form onSubmit={e => handleSubmit(e)} className="w-full">
+    <form onSubmit={e => handleSubmit(e)} className="w-full" id="attendanceForm">
       <table className="w-full table-auto rounded-sm max-h-screen overflow-y-scroll">
         <thead>
           <tr>
@@ -109,7 +113,9 @@ function AttendanceTable(props) {
         <p>Total Students Marked: {listCount}</p>
 
         <div className="my-4 md:my-0">
-          <span className="bg-red-500 hover:bg-red-700 text-white font-bold mx-2 py-2 px-4 rounded cursor-pointer">
+          <span className="bg-red-500 hover:bg-red-700 text-white font-bold mx-2 py-2 px-4 rounded cursor-pointer"
+            onClick={handleClear}
+          >
             Clear All
           </span>
 
