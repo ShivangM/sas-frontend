@@ -16,15 +16,18 @@ function AttendanceTable(props) {
 
   const attendanceData = useSelector(state => state.attendance.attendanceondate)
 
+  const filterData = useSelector(state => state.filterData.data)
+
   useEffect(async () => {
     const url = "https://sasietdavv-backend.herokuapp.com/api/data/getattendanceondate";
     dispatch(loadingActions.setLoading({ loading: true, msg: "Loading Attendance" }))
 
-    const temp = await axios.post(url, {subject_code: subject.subject_code, date: props.date}).catch(err => alert(err))
+    const temp = await axios.post(url, {subject_code: subject.subject_code, 
+    date: props.date, branch: filterData.branch, section: filterData.section}).catch(err => alert(err))
     dispatch(attendaceActions.setAttendanceOnDate(temp.data.attendanceOnDate))
     dispatch(attendaceActions.setStrengthOnDate(temp.data.strengthOnDate))
     dispatch(loadingActions.setLoading({ loading: false, msg: "loading" }))
-  }, [props.date || subject]);
+  }, [filterData, props.date]);
 
   return (
       <table className="w-full table-auto rounded-sm max-h-screen overflow-y-scroll">

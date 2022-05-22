@@ -6,6 +6,7 @@ import Select from './Select';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadingActions } from '../../../../store/loadingSlice';
+import { filterDataActions } from '../../../../store/filterDataSlice';
 
 function FeedAttendance() {
   const [value, onChange] = useState(new Date());
@@ -21,6 +22,7 @@ function FeedAttendance() {
     dispatch(loadingActions.setLoading({ loading: true, msg: "Loading..." }))
     const temp = await axios.post(url).catch(err => alert(err))
     setTeaches(temp.data)
+    dispatch(filterDataActions.setFilterData(temp.data[0]))
     dispatch(loadingActions.setLoading({ loading: false, msg: "loading" }))
   }, []);
 

@@ -8,19 +8,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadingActions } from '../../../../store/loadingSlice';
 import 'react-calendar-heatmap/dist/styles.css';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { filterDataActions } from '../../../../store/filterDataSlice';
 
 function AnalyseAttendanceTeachers() {
   const [value, onChange] = useState(new Date());
   const [teaches, setTeaches] = useState({});
 
-  const attendanceData = useSelector(state => state.attendance.classStudents)
-  const subject = useSelector(state => state.subject.classSubject)
-
   const strengthData = useSelector(state => state.attendance.strengthondate)
-
-  // for (let index = 0; index < strengthData.length; index++) {
-  //   strengthData[index].date = strengthData[index].date.substr(0,10)
-  // }
 
   const dispatch = useDispatch()
 
@@ -29,6 +23,7 @@ function AnalyseAttendanceTeachers() {
     dispatch(loadingActions.setLoading({ loading: true, msg: "Loading..." }))
     const temp = await axios.post(url).catch(err => alert(err))
     setTeaches(temp.data)
+    dispatch(filterDataActions.setFilterData(temp.data[0]))
     dispatch(loadingActions.setLoading({ loading: false, msg: "loading" }))
   }, []);
 
